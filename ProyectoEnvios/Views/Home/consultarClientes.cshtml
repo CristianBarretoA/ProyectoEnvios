@@ -1,0 +1,91 @@
+﻿@model IEnumerable<ProyectoEnvios.Models.ClienteCS>
+
+@{
+    ViewBag.Title = "Clientes";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    if (Session["userID"] == null)
+    {
+        Response.Redirect("~/Home/Index", false);
+    }
+}
+
+<h2>Inicio</h2>
+
+<p>
+    @Html.ActionLink("Crear nuevo cliente", "agregarCliente")
+</p>
+@if (TempData["Exito"] != null)
+{
+    <div class="text-success">
+        <p><strong>Exito: @TempData["Exito"].ToString()</strong></p>
+    </div>
+}
+@if (TempData["Error"] != null)
+{
+    <div class="text-danger">
+        <p><strong>Error: @TempData["Error"].ToString()</strong></p>
+    </div>
+}
+
+<div class="container">
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.IdentificacionUsuario)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NombreUsuario)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ApellidoUsuario)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EdadUsuario)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TipoDocumento)
+            </th>
+            <th>
+                Acciones
+            </th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IdentificacionUsuario)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NombreUsuario)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ApellidoUsuario)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EdadUsuario)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TipoDocumento)
+                </td>
+                <td>
+                    @Html.ActionLink("Editar", "editarCliente", new { id = item.IdentificacionUsuario }) |
+                    @Html.ActionLink("Borrar", "borrarCliente", new { id = item.IdentificacionUsuario }, new { @class = "aEliminar" })
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>
+
+
+@section scripts{
+    <script>
+        $(".aEliminar").click(function (event) {
+            if (!confirm("Esta seguro de eliminar al cliente?")) {
+                event.preventDefault();
+            }
+        });
+    </script>
+
+}
