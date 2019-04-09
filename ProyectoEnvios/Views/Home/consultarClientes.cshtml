@@ -14,25 +14,22 @@
 <p>
     @Html.ActionLink("Crear nuevo cliente", "agregarCliente")
 </p>
-@if (TempData["Exito"] != null)
+
+@if (ViewData["Exito"] != null)
 {
     <div class="text-success">
         <p><strong>Exito: @TempData["Exito"].ToString()</strong></p>
     </div>
 }
-@if (TempData["Error"] != null)
+@if (ViewData["Error"] != null)
 {
     <div class="text-danger">
         <p><strong>Error: @TempData["Error"].ToString()</strong></p>
     </div>
 }
-
-<div class="container">
+@ViewBag.Msg<div class="container">
     <table class="table">
         <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.IdentificacionUsuario)
-            </th>
             <th>
                 @Html.DisplayNameFor(model => model.NombreUsuario)
             </th>
@@ -40,10 +37,13 @@
                 @Html.DisplayNameFor(model => model.ApellidoUsuario)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.EdadUsuario)
+                @Html.DisplayNameFor(model => model.IdentificacionUsuario)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.TipoDocumento)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EdadUsuario)
             </th>
             <th>
                 Acciones
@@ -53,9 +53,7 @@
         @foreach (var item in Model)
         {
             <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.IdentificacionUsuario)
-                </td>
+
                 <td>
                     @Html.DisplayFor(modelItem => item.NombreUsuario)
                 </td>
@@ -63,19 +61,49 @@
                     @Html.DisplayFor(modelItem => item.ApellidoUsuario)
                 </td>
                 <td>
+                    @Html.DisplayFor(modelItem => item.IdentificacionUsuario)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NombreDocumento)
+                </td>
+                <td>
                     @Html.DisplayFor(modelItem => item.EdadUsuario)
                 </td>
+
                 <td>
-                    @Html.DisplayFor(modelItem => item.TipoDocumento)
-                </td>
-                <td>
-                    @Html.ActionLink("Editar", "editarCliente", new { id = item.IdentificacionUsuario }) |
-                    @Html.ActionLink("Borrar", "borrarCliente", new { id = item.IdentificacionUsuario }, new { @class = "aEliminar" })
+                    @Html.ActionLink("Editar", "editarCliente", new { id = item.IdentificacionUsuario })
+                    <a href="#" data-toggle="modal" data-target="#deleteModal">Borrar</a>
                 </td>
             </tr>
+
+            <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title text-danger">
+                                ¿Esta seguro de eliminar al usuario?
+                                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">×</span>
+                                </button>
+                            </h5>
+                        </div>
+                        <div class="modal-body">Presione "Borrar" si desea eliminar al usuario @item.NombreUsuario @item.ApellidoUsuario</div>
+                        <div class="modal-footer">
+                            <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
+                            @Html.ActionLink("Borrar", "borrarCliente", new { id = item.IdentificacionUsuario }, new { @class = "btn btn-primary" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         }
 
+
     </table>
+
+
+
+
 </div>
 
 

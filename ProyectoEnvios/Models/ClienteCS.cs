@@ -23,7 +23,7 @@ namespace ProyectoEnvios.Models
         [Required]
         public int EdadUsuario { get; set; }
 
-        [Display(Name = "Tipo Doc")]
+        [Display(Name = "Tipo Documento")]
         public long TipoDocumento { get; set; }
 
         [Display(Name = "Usuario")]
@@ -31,5 +31,19 @@ namespace ProyectoEnvios.Models
 
         [Display(Name = "Contraseña")]
         public string Pass { get; set; }
+
+        [Display(Name = "Tipo Documento")]
+        public string NombreDocumento { get; set; }
+
+
+    }
+
+    public partial class IdentificacionCS
+    {
+
+        public int IdTipoDocumento { get; set; }
+
+        public string NombreDocumento { get; set; }
+
     }
 }

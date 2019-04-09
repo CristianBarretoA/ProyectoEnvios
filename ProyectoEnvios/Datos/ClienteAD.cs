@@ -37,6 +37,8 @@ namespace ProyectoEnvios.Datos
                 DataSet dataSet = new DataSet();
                 dataAdapter.Fill(dataSet);
                 List<ClienteCS> clientList = new List<ClienteCS>();
+
+                
                 foreach (DataRow dataRow in dataSet.Tables[0].Rows)
                 {
                     ClienteCS cS = new ClienteCS();
@@ -45,7 +47,7 @@ namespace ProyectoEnvios.Datos
                     cS.ApellidoUsuario = Convert.ToString(dataRow["apellidoUsuario"]);
                     cS.EdadUsuario = Convert.ToInt32(dataRow["edadUsuario"]);
                     cS.TipoDocumento = Convert.ToInt64(dataRow["tipoDocUsuario"]);
-
+                    cS.NombreDocumento = Convert.ToString(dataRow["NombreDocumento"]); 
                     clientList.Add(cS);
                 }
 
@@ -74,6 +76,31 @@ namespace ProyectoEnvios.Datos
                 }
 
                 return cS;
+            }
+        }
+
+        public List<IdentificacionCS> listaDocumentos()
+        {
+
+            using (var com = new SqlCommand("SELECT * FROM dbo.TipoDocumento;", connection()))
+            {
+                com.CommandType = CommandType.Text;
+                SqlDataAdapter dataAdapter = new SqlDataAdapter(com);
+                DataSet dataSet = new DataSet();
+                dataAdapter.Fill(dataSet);
+
+                List<IdentificacionCS> identificacionList = new List<IdentificacionCS>();
+
+                foreach (DataRow dataRow in dataSet.Tables[0].Rows)
+                {
+                    IdentificacionCS identificacionCS = new IdentificacionCS();
+
+                    identificacionCS.IdTipoDocumento = Convert.ToInt32(dataRow["idTipoDocumento"]);
+                    identificacionCS.NombreDocumento = Convert.ToString(dataRow["NombreDocumento"]);
+
+                    identificacionList.Add(identificacionCS);
+                }
+                return identificacionList;
             }
         }
 
@@ -116,7 +143,7 @@ namespace ProyectoEnvios.Datos
             string msg;
             try
             {
-                using (SqlCommand com = new SqlCommand("actualizarCliente", connection()))
+                using (SqlCommand com = new SqlCommand("actualizarUsuario", connection()))
                 {
                     com.CommandType = CommandType.StoredProcedure;
                     com.Parameters.AddWithValue("@idCliente", cS.IdentificacionUsuario);
@@ -148,7 +175,7 @@ namespace ProyectoEnvios.Datos
             string msg;
             try
             {
-                using (SqlCommand com = new SqlCommand("borrarCliente", connection()))
+                using (SqlCommand com = new SqlCommand("borrarUsuario", connection()))
                 {
                     com.CommandType = CommandType.StoredProcedure;
                     com.Parameters.AddWithValue("@idCliente", id);

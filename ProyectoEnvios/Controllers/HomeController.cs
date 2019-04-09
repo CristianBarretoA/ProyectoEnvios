@@ -53,7 +53,15 @@ namespace ProyectoEnvios.Controllers
         {
             try
             {
-                return View(cAD.consultarClientes());
+                if (TempData["Exito"] != null)
+                {
+                    ViewData["Exito"] = TempData["Exito"];
+                    return View(cAD.consultarClientes());
+                }
+                else
+                {
+                    return View(cAD.consultarClientes());
+                }
             }
             catch (Exception ex)
             {
@@ -82,20 +90,28 @@ namespace ProyectoEnvios.Controllers
                 string msg = cAD.agregarCliente(cS);
                 if (!msg.Contains("error"))
                 {
-                    ViewData["Exito"] = msg;
+                    TempData["Exito"] = msg;
+                    return RedirectToAction("consultarClientes");
                 }
                 else
                 {
                     ViewData["Error"] = msg;
+                    return View();
                 }
             }
             catch (Exception ex)
             {
                 ModelState.AddModelError("Error al crear el cliente, ", ex.Message);
+                return View();
             }
-            return View();
         }
 
+        public ActionResult ListarDocumentos(int id)
+        {
+            ViewData["id"] = id.ToString();
+            return PartialView(cAD.listaDocumentos());
+
+        }
 
 
         public ActionResult editarCliente(int id)
@@ -125,19 +141,21 @@ namespace ProyectoEnvios.Controllers
                 string msg = cAD.editarCliente(cS);
                 if (!msg.Contains("error"))
                 {
-                    ViewData["Exito"] = msg;
+                    TempData["Exito"] = msg;
+                    return RedirectToAction("consultarClientes");
                 }
                 else
                 {
                     ViewData["Error"] = msg;
+                    return View(cS);
                 }
 
             }
             catch (Exception ex)
             {
                 ModelState.AddModelError("Error al modificar cliente, ", ex.Message);
+                return View(cS);
             }
-            return View(cS);
         }
 
         public ActionResult borrarCliente(int id)

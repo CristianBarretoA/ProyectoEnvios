@@ -1,0 +1,30 @@
+﻿@model IEnumerable<ProyectoEnvios.Models.IdentificacionCS>
+
+
+@if (ViewData["id"] != null)
+{
+    <select class="form-control" id="TipoDocumento" name="TipoDocumento">
+        @foreach (var item in Model)
+        {
+            if (item.IdTipoDocumento == Convert.ToInt32(ViewData["id"].ToString()))
+            {
+                <option value="@item.IdTipoDocumento" selected>@item.NombreDocumento</option>
+            }
+            else
+            {
+            <option value="@item.IdTipoDocumento">@item.NombreDocumento</option>
+            }
+        }
+    </select>
+}
+else
+{
+    <select class="form-control" id="TipoDocumento" name="TipoDocumento">
+        <p></p>
+        <option value="0" selected>Seleccione un Item</option>
+        @foreach (var item in Model)
+        {
+            <option value="@item.IdTipoDocumento">@item.NombreDocumento</option>
+        }
+    </select>
+}
