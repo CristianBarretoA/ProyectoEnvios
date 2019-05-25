@@ -148,12 +148,15 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\UsuarioController.cs" />
     <Compile Include="Datos\ClienteAD.cs" />
     <Compile Include="Datos\db.cs" />
+    <Compile Include="Datos\EnvioAD.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\ClienteCS.cs" />
+    <Compile Include="Models\EnvioCS.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -195,10 +198,12 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Home\editarCliente.cshtml" />
-    <Content Include="Views\Home\consultarClientes.cshtml" />
-    <Content Include="Views\Home\agregarCliente.cshtml" />
-    <Content Include="Views\Home\ListarDocumentos.cshtml" />
+    <Content Include="Views\Usuario\editarCliente.cshtml" />
+    <Content Include="Views\Usuario\consultarClientes.cshtml" />
+    <Content Include="Views\Usuario\agregarCliente.cshtml" />
+    <Content Include="Views\Usuario\ListarDocumentos.cshtml" />
+    <Content Include="Views\Usuario\Login.cshtml" />
+    <Content Include="Views\Home\ConsultaGuia.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -23,7 +23,7 @@
                 }
                 else
                 {
-                    @Html.ActionLink("Inicio", "consultarClientes", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                    @Html.ActionLink("Inicio", "consultarClientes", "Usuario", new { area = "" }, new { @class = "navbar-brand" })
                 }
 
             </div>
@@ -31,7 +31,7 @@
                 @if (Session["userID"] == null)
                 {
                     <ul class="nav navbar-nav">
-                        <li>@Html.ActionLink("Login", "Index", "Home")</li>
+                        <li>@Html.ActionLink("Login", "Login", "Usuario")</li>
                     </ul>
                 }
                 else
@@ -63,7 +63,7 @@
                     <div class="modal-body">Presione "Logout" si desea cerrar su sesion actual</div>
                     <div class="modal-footer">
                         <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                        @Html.ActionLink("Logout", "Logout", "Home", new { @class = "btn btn-primary" })
+                        @Html.ActionLink("Logout", "Logout", "Usuario", new { @class = "btn btn-primary" })
                     </div>
                 </div>
             </div>

@@ -5,7 +5,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
     if (Session["userID"] == null)
     {
-        Response.Redirect("~/Home/Index", false);
+        Response.Redirect("~/Usuario/Login", false);
     }
 }
 
@@ -27,7 +27,8 @@
         <p><strong>Error: @TempData["Error"].ToString()</strong></p>
     </div>
 }
-@ViewBag.Msg<div class="container">
+@ViewBag.Msg
+<div class="container">
     <table class="table">
         <tr>
             <th>

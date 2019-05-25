@@ -1,15 +1,15 @@
 ﻿@model  ProyectoEnvios.Models.ClienteCS
 
 @{
-    ViewBag.Title = "Crear Cliente";
+    ViewBag.Title = "Editar Cliente";
     Layout = "~/Views/Shared/_Layout.cshtml";
     if (Session["userID"] == null)
     {
-        Response.Redirect("~/Home/Index", false);
+        Response.Redirect("~/Usuario/Login", false);
     }
 }
 
-<h2>Crear Cliente</h2>
+<h2>Editar Cliente</h2>
 
 
 @using (Html.BeginForm())
@@ -20,13 +20,14 @@
         <h4>Cliente</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        @if (ViewData["Exito"] != null)
+        @Html.HiddenFor(model => model.IdentificacionUsuario)
+        @if (TempData["Exito"] != null)
         {
             <div class="text-success">
                 <p><strong>Exito: @ViewData["Exito"].ToString()</strong></p>
             </div>
         }
-        @if (ViewData["Error"] != null)
+        @if (TempData["Error"] != null)
         {
             <div class="text-danger">
                 <p><strong>Error: @ViewData["Error"].ToString()</strong></p>
@@ -34,17 +35,9 @@
         }
 
         <div class="form-group">
-            @Html.LabelFor(model => model.IdentificacionUsuario, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.IdentificacionUsuario, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.IdentificacionUsuario, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
             @Html.LabelFor(model => model.TipoDocumento, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.Action("ListarDocumentos", new { id = 0 })
+                @Html.Action("ListarDocumentos", new { id = Model.TipoDocumento })
                 @Html.ValidationMessageFor(model => model.TipoDocumento, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -73,35 +66,10 @@
             </div>
         </div>
 
-        @*<div class="form-group">
-            @Html.LabelFor(model => model.TipoDocumento, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.TipoDocumento, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.TipoDocumento, "", new { @class = "text-danger" })
-            </div>
-        </div>*@
-
-
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Usuario, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Usuario, new { htmlAttributes = new { @class = "form-control", required = "required" } })
-                @Html.ValidationMessageFor(model => model.Usuario, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Pass, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Pass, new { htmlAttributes = new { @class = "form-control", required = "required" } })
-                @Html.ValidationMessageFor(model => model.Pass, "", new { @class = "text-danger" })
-            </div>
-        </div>
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Crear" class="btn btn-default" />
+                <input type="submit" value="Editar" class="btn btn-default" />
             </div>
         </div>
     </div>
