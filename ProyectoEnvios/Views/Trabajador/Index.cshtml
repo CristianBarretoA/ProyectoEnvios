@@ -1,0 +1,12 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    if (Session["userID"] == null)
+    {
+        Response.Redirect("~/Home/Login", false);
+    }
+}
+
+<h2>Index</h2>
+

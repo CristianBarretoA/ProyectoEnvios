@@ -35,6 +35,9 @@ namespace ProyectoEnvios.Models
         [Display(Name = "Tipo Documento")]
         public string NombreDocumento { get; set; }
 
+        [Display(Name = "Rol")]
+        public string rol { get; set; }
+
 
     }
 

@@ -24,11 +24,18 @@ namespace ProyectoEnvios.Datos
                 foreach (DataRow dataRow in dataSet.Tables[0].Rows)
                 {
                     eS.idEnvio = Convert.ToInt32(dataRow["idEnvio"]);
-                    eS.fechaEnvio = Convert.ToDateTime(dataRow["fecha"]);
-                    eS.destino = Convert.ToString(dataRow["nombreCiudad"]);
+                    eS.nombreRemitente = Convert.ToString(dataRow["nombreRemitente"]);
+                    eS.nombreDestinatario = Convert.ToString(dataRow["nombreDestinatario"]);
+                    eS.fechaRecepcion = Convert.ToDateTime(dataRow["fechaRecepcion"]);
+                    eS.fechaEntrega = Convert.ToDateTime(dataRow["fechaEntrega"]);
+                    eS.fechaEntrega = Convert.ToDateTime(dataRow["fechaEntrega"]);
+                    eS.origen = Convert.ToString(dataRow["ciudadOrigen"]);
+                    eS.destino = Convert.ToString(dataRow["ciudadDestino"]);
+                    eS.tipoProducto = Convert.ToString(dataRow["tipoProducto"]);
                     eS.peso = Convert.ToInt32(dataRow["peso"]);
                     eS.estado = Convert.ToString(dataRow["estado"]);
-                    eS.direccion = Convert.ToString(dataRow["direccion"]);
+                    eS.direccionOrigen = Convert.ToString(dataRow["direccionOrigen"]);
+                    eS.direccionDestino = Convert.ToString(dataRow["direccionDestino"]);
                 }
                 return eS;
             }

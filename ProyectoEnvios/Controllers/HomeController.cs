@@ -49,6 +49,48 @@ namespace ProyectoEnvios.Controllers
         }
 
 
+        // GET: Usuario
+        public ActionResult Login()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Login(ClienteCS cS)
+        {
+            try
+            {
+                ClienteCS c = new ClienteCS();
+                c = cAD.login(cS.Usuario, cS.Pass);
+                if (c.rol != null)
+                {
+                    Session["userID"] = c.NombreUsuario + " " + c.ApellidoUsuario + "," + c.rol;
+                    switch (c.rol)
+                    {
+                        case "Cliente":
+                            return RedirectToAction("Index", "Usuario");
+                        case "Trabajador":
+                            return RedirectToAction("Index", "Trabajador");
+                        case "Mensajero":
+                            return RedirectToAction("Index", "Mensajero");
+                        default:
+                            return RedirectToAction("Login", "Home");
+                    }
+                }
+                else
+                {
+                    ViewData["Error"] = "Usuario o contraseña erroneo, por favor valide";
+                    return View();
+                }
+            }
+            catch (Exception ex)
+            {
+                ModelState.AddModelError("Error al logear, ", ex.Message);
+                return View();
+            }
+        }
+
+
         //No Borrarj
         //public ActionResult Index()
         //{

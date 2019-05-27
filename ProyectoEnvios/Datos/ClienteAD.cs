@@ -21,6 +21,7 @@ namespace ProyectoEnvios.Datos
                 var reader = com.ExecuteReader();
                 while (reader.Read())
                 {
+                    cS.rol = Convert.ToString(reader["nombreRol"]);
                     cS.NombreUsuario = Convert.ToString(reader["nombreUsuario"]);
                     cS.ApellidoUsuario = Convert.ToString(reader["apellidoUsuario"]);
                 }

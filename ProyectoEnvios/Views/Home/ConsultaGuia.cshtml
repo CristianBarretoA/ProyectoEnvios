@@ -7,22 +7,51 @@
 
 <h2>Consulta de la Guia #@Html.DisplayFor(model => model.idEnvio)</h2>
 
-<div>
+@{ 
+    var dateRe = "";
+    var hourRe = "";
+    var dateEn = "";
+    var hourEn = "";
+}
+
+<div class="container">
     @if (ViewData["Error"] != null)
     {
-        <div class="text-danger">
-            <strong>Error: @ViewData["Error"].ToString()</strong>
+        <div class="alert alert-danger" role="alert">
+            <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+            <span class="sr-only">Error:</span>
+            @ViewData["Error"].ToString(), @Html.ActionLink("Click para volver atras", "Index", "Home", new { area = "" }, new { @class = "text-danger" })
         </div>
     }
+    else
+    {
+        switch (Model.estado)
+        {
+            case "Entregado":
+                <h4 class="text-success">Estado: @Html.DisplayFor(model => model.estado)</h4>
+                break;
+            case "Rechazado":
+                <h4 class="text-danger">Estado: @Html.DisplayFor(model => model.estado)</h4>
+                break;
+            default:
+                <h4 class="text-primary">Estado: @Html.DisplayFor(model => model.estado)</h4>
+                break;
+        }
+        dateRe = Model.fechaRecepcion.ToShortDateString();
+        hourRe = Model.fechaRecepcion.ToShortTimeString();
+        hourRe = Model.fechaRecepcion.ToShortTimeString();
+        dateEn = Model.fechaEntrega.ToShortDateString();
+    }
+
     <hr />
 
     <div class="container-fluid col-md-8 col-md-offset-2">
         <div class="row">
             <h3 style="background-color:lightgray; padding:10px;">REMITENTE/ORIGEN</h3>
-            <hr />
+            <hr />            
             <div class="col-md-5 col-md-offset-1">
                 <p>Ciudad de Origen</p>
-                <p>CAMBIAR</p>
+                <p>@Html.DisplayFor(model => model.origen)</p>
             </div>
             <div class="col-md-5 col-md-offset-1">
                 <p>Ciudad de Destino</p>
@@ -33,35 +62,31 @@
             <hr />
             <div class="col-md-5 col-md-offset-1">
                 <p>Fecha de Repecion</p>
-                <p>@Html.DisplayNameFor(model => model.fechaEnvio.Year)</p>
+                <p>@Html.DisplayFor(model => dateRe)</p>
             </div>
             <div class="col-md-5 col-md-offset-1">
                 <p>Hora de Recepcion</p>
-                <p>@Html.DisplayNameFor(model => model.fechaEnvio.Hour)</p>
+                <p>@Html.DisplayFor(model => hourRe)</p>
             </div>
         </div>
         <div class="row">
             <hr />
             <div class="col-md-5 col-md-offset-1">
                 <p>Nombre de Remitente</p>
-                <p>NOMBRE</p>
+                <p>@Html.DisplayFor(model => model.nombreRemitente)</p>
             </div>
             <div class="col-md-5 col-md-offset-1">
                 <p>Direccion</p>
-                <p>DIRECCION DEL REMITENTE</p>
+                <p>@Html.DisplayFor(model => model.direccionOrigen)</p>
             </div>
         </div>
         <div class="row">
             <hr />
-            <div class="col-md-3 col-md-offset-1">
-                <p>Cantidad de Envios</p>
-                <p>1</p>
-            </div>
-            <div class="col-md-3 col-md-offset-1">
+            <div class="col-md-5 col-md-offset-1">
                 <p>Tipo de Producto</p>
-                <p>COMIMDA</p>
+                <p>@Html.DisplayFor(model => model.tipoProducto)</p>
             </div>
-            <div class="col-md-3 col-md-offset-1">
+            <div class="col-md-5 col-md-offset-1">
                 <p>Peso total (Kg)</p>
                 <p>@Html.DisplayFor(model => model.peso)</p>
             </div>
@@ -72,115 +97,47 @@
             <h3 style="background-color:lightgray; padding:10px;">DESTINATARIO/DESTINO</h3>
             <hr />
             <div class="col-md-5 col-md-offset-1">
-                <p>Ciudad Origen</p>
-                <p>CAMBIAR</p>
+                <p>Ciudad de Origen</p>
+                <p>@Html.DisplayFor(model => model.origen)</p>
             </div>
             <div class="col-md-5 col-md-offset-1">
-                <p>Ciudad Destino</p>
+                <p>Ciudad de Destino</p>
                 <p>@Html.DisplayFor(model => model.destino)</p>
             </div>
         </div>
         <div class="row">
             <hr />
             <div class="col-md-5 col-md-offset-1">
-                <p>Ciudad Origen</p>
-                <p>CAMBIAR</p>
+                <p>Fecha de Entrega</p>
+                <p>@Html.DisplayFor(model => dateEn)</p>
             </div>
             <div class="col-md-5 col-md-offset-1">
-                <p>Ciudad Destino</p>
-                <p>@Html.DisplayFor(model => model.destino)</p>
+                <p>Hora de Entrega</p>
+                <p>@Html.DisplayFor(model => hourEn)</p>
             </div>
         </div>
         <div class="row">
             <hr />
             <div class="col-md-5 col-md-offset-1">
-                <p>Ciudad Origen</p>
-                <p>CAMBIAR</p>
+                <p>Nombre de Destinatario</p>
+                <p>@Html.DisplayFor(model => model.nombreDestinatario)</p>
             </div>
             <div class="col-md-5 col-md-offset-1">
-                <p>Ciudad Destino</p>
-                <p>@Html.DisplayFor(model => model.destino)</p>
+                <p>Direccion</p>
+                <p>@Html.DisplayFor(model => model.direccionDestino)</p>
             </div>
-        </div>
-    </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    <div class="container-fluid">
-        <div class="row">
-
-            <div class="col-md-6">
-                <dl class="dl-horizontal">
-                    <dt>
-                        @Html.DisplayNameFor(model => model.idEnvio)
-                    </dt>
-
-                    <dd>
-                        @Html.DisplayFor(model => model.idEnvio)
-                    </dd>
-
-                    <dt>
-                        @Html.DisplayNameFor(model => model.fechaEnvio)
-                    </dt>
-
-                    <dd>
-                        @Html.DisplayFor(model => model.fechaEnvio)
-                    </dd>
-
-                    <dt>
-                        @Html.DisplayNameFor(model => model.destino)
-                    </dt>
-
-                    <dd>
-                        @Html.DisplayFor(model => model.destino)
-                    </dd>
-
-                    <dt>
-                        @Html.DisplayNameFor(model => model.peso)
-                    </dt>
-
-                    <dd>
-                        @Html.DisplayFor(model => model.peso)
-                    </dd>
-
-                    <dt>
-                        @Html.DisplayNameFor(model => model.estado)
-                    </dt>
-
-                    <dd>
-                        @Html.DisplayFor(model => model.estado)
-                    </dd>
-
-                    <dt>
-                        @Html.DisplayNameFor(model => model.direccion)
-                    </dt>
-
-                    <dd>
-                        @Html.DisplayFor(model => model.direccion)
-                    </dd>
-                </dl>
-            </div>
-            <div class="col-md-6">
-                <dl class="dl-horizontal"></dl>
-            </div>
-
         </div>
     </div>
 
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+@if (Session["userID"] == null)
+{
+    <div class="row">
+        <p>
+            @Html.ActionLink("Volver Atras", "Index")
+        </p>
+    </div>
+}
+
+
+
