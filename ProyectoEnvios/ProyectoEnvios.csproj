@@ -206,14 +206,16 @@
     <Content Include="Views\Trabajador\agregarCliente.cshtml" />
     <Content Include="Views\Trabajador\ListarDocumentos.cshtml" />
     <Content Include="Views\Home\Login.cshtml" />
-    <Content Include="Views\Home\ConsultaGuia.cshtml" />
+    <Content Include="Views\Envio\ConsultaGuia.cshtml" />
     <Content Include="Views\Trabajador\Index.cshtml" />
     <Content Include="Views\Mensajero\Index.cshtml" />
     <Content Include="Views\Usuario\Index.cshtml" />
+    <Content Include="Views\Trabajador\ListarRoles.cshtml" />
+    <Content Include="Views\Envio\registrarEnvio.cshtml" />
+    <Content Include="Views\Envio\_consultarCliente.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Envio\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

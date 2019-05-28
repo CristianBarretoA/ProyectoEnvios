@@ -12,8 +12,7 @@ namespace ProyectoEnvios.Controllers
     {
 
         ClienteAD cAD = new ClienteAD();
-        EnvioAD eAD = new EnvioAD();
-
+        
         public ActionResult Index()
         {
             return View();
@@ -22,32 +21,8 @@ namespace ProyectoEnvios.Controllers
         [HttpPost]
         public ActionResult Index(EnvioCS es)
         {
-            return RedirectToAction("ConsultaGuia", new { id = es.idEnvio });
+            return RedirectToAction("ConsultaGuia","Envio", new { id = es.idEnvio });
         }
-
-        public ActionResult ConsultaGuia(int id)
-        {
-            try
-            {
-                EnvioCS e = new EnvioCS();
-                e = eAD.consultarGuia(id);
-                if (e.idEnvio != 0)
-                {
-                    return View(e);
-                }
-                else
-                {
-                    ViewData["Error"] = "El numero de guia ingresado no existe";
-                    return View();
-                }
-            }
-            catch (Exception ex)
-            {
-                ModelState.AddModelError("Error al logear, ", ex.Message);
-                return View();
-            }
-        }
-
 
         // GET: Usuario
         public ActionResult Login()

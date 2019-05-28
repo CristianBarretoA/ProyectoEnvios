@@ -105,6 +105,31 @@ namespace ProyectoEnvios.Datos
             }
         }
 
+        public List<RolesCS> listaRoles()
+        {
+
+            using (var com = new SqlCommand("SELECT * FROM dbo.Roles;", connection()))
+            {
+                com.CommandType = CommandType.Text;
+                SqlDataAdapter dataAdapter = new SqlDataAdapter(com);
+                DataSet dataSet = new DataSet();
+                dataAdapter.Fill(dataSet);
+
+                List<RolesCS> rolesList = new List<RolesCS>();
+
+                foreach (DataRow dataRow in dataSet.Tables[0].Rows)
+                {
+                    RolesCS rolesCS = new RolesCS();
+
+                    rolesCS.idRol = Convert.ToInt32(dataRow["idRol"]);
+                    rolesCS.nombreRol = Convert.ToString(dataRow["nombreRol"]);
+
+                    rolesList.Add(rolesCS);
+                }
+                return rolesList;
+            }
+        }
+
         public string agregarCliente(ClienteCS c)
         {
             string msg;
@@ -117,9 +142,12 @@ namespace ProyectoEnvios.Datos
                     com.Parameters.AddWithValue("@nombre", c.NombreUsuario);
                     com.Parameters.AddWithValue("@apellido", c.ApellidoUsuario);
                     com.Parameters.AddWithValue("@edad", c.EdadUsuario);
+                    com.Parameters.AddWithValue("@direccion", c.Direcion);
+                    com.Parameters.AddWithValue("@telefono", c.telefono);
                     com.Parameters.AddWithValue("@tipoDocumento", c.TipoDocumento);
                     com.Parameters.AddWithValue("@usuario", c.Usuario);
                     com.Parameters.AddWithValue("@pass", c.Pass);
+                    com.Parameters.AddWithValue("@idRol", c.idRol);
                     var filas = com.ExecuteNonQuery();
                     if (filas != 0)
                     {

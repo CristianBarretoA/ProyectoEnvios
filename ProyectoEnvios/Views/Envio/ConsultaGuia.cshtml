@@ -39,8 +39,8 @@
         }
         dateRe = Model.fechaRecepcion.ToShortDateString();
         hourRe = Model.fechaRecepcion.ToShortTimeString();
-        hourRe = Model.fechaRecepcion.ToShortTimeString();
         dateEn = Model.fechaEntrega.ToShortDateString();
+        hourEn = Model.fechaEntrega.ToShortTimeString();
     }
 
     <hr />
@@ -134,7 +134,7 @@
 {
     <div class="row">
         <p>
-            @Html.ActionLink("Volver Atras", "Index")
+            @Html.ActionLink("Volver Atras", "Index", "Home")
         </p>
     </div>
 }

@@ -88,6 +88,13 @@ namespace ProyectoEnvios.Controllers
 
         }
 
+        public ActionResult ListarRoles(int id)
+        {
+            ViewData["id"] = id.ToString();
+            return PartialView(cAD.listaRoles());
+
+        }
+
 
         public ActionResult editarCliente(int id)
         {

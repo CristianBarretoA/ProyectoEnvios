@@ -19,6 +19,14 @@ namespace ProyectoEnvios.Models
         [Required]
         public string ApellidoUsuario { get; set; }
 
+        [Display(Name = "Direccion")]
+        [Required]
+        public string Direcion { get; set; }
+
+        [Display(Name = "Telelfono")]
+        [Required]
+        public int telefono { get; set; }
+
         [Display(Name = "Edad")]
         [Required]
         public int EdadUsuario { get; set; }
@@ -36,6 +44,9 @@ namespace ProyectoEnvios.Models
         public string NombreDocumento { get; set; }
 
         [Display(Name = "Rol")]
+        public int idRol { get; set; }
+
+        [Display(Name = "Rol")]
         public string rol { get; set; }
 
 
@@ -47,6 +58,15 @@ namespace ProyectoEnvios.Models
         public int IdTipoDocumento { get; set; }
 
         public string NombreDocumento { get; set; }
+
+    }
+
+    public partial class RolesCS
+    {
+
+        public int idRol { get; set; }
+
+        public string nombreRol { get; set; }
 
     }
 }

@@ -13,8 +13,12 @@ namespace ProyectoEnvios.Models
 
         public string nombreRemitente { get; set; }
 
+        public int idRemitente { get; set; }
+
         public string nombreDestinatario { get; set; }
-        
+
+        public int idDestinatario { get; set; }
+
         public DateTime fechaRecepcion { get; set; }
 
         public DateTime fechaEntrega { get; set; }
