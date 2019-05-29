@@ -24,6 +24,47 @@ namespace ProyectoEnvios.Controllers
             return View();
         }
 
+        [HttpPost]
+        public ActionResult registrarEnvio(EnvioCS envioCS)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View();
+            }
+            try
+            {
+                string msg = eAD.registrarEnvio(envioCS);
+                if (!msg.Contains("error"))
+                {
+                    //TempData["Exito"] = msg;
+                    //return RedirectToAction("registrarEnvio");
+                    ViewData["Exito"] = msg;
+                    return View();
+                }
+                else
+                {
+                    
+                    if (msg.Contains("Destinatario"))
+                    {
+                        ViewData["Error"] = "No se encuentra registrado el destinatario";
+                        return View();
+                    }
+                    else
+                    {
+                        ViewData["Error"] = "No se encuentra registrado el remitente";
+                        return View();
+                    }
+                    
+                }
+            }
+            catch (Exception ex)
+            {
+                
+                ModelState.AddModelError("Error al crear el cliente, ", ex.Message);
+                return View();
+            }
+        }
+
         public ActionResult ConsultaGuia(int id)
         {
             try
