@@ -24,7 +24,6 @@ namespace ProyectoEnvios.Controllers
             return View();
         }
 
-
         public ActionResult ConsultaGuia(int id)
         {
             try
@@ -50,12 +49,12 @@ namespace ProyectoEnvios.Controllers
 
         ClienteAD cAD = new ClienteAD();
 
-        public ActionResult _consultarCliente()
-        {
-            return PartialView();
-        }
+        //public ActionResult _consultarCliente()
+        //{
+        //    return PartialView();
+        //}
 
-        [HttpPost,ValidateInput(false)]
+
         public ActionResult _consultarCliente(int id)
         {
             try

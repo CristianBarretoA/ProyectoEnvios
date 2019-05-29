@@ -1,21 +1,7 @@
 ﻿@model ProyectoEnvios.Models.ClienteCS
 
-
-<form class="navbar-form navbar-left" action="@Url.Action("_consultarCliente")">
-    <div class="input-group">
-        <div class="col-md-10">
-            <input type="text" id="id" name="id" class="form-control" placeholder="N° Guia">
-        </div>
-        <div class="input-group-btn">
-            <button class="btn btn-default" type="submit">
-                <i class="glyphicon glyphicon-search"></i>
-            </button>
-        </div>
-    </div>
-</form>
-
 <div>
-    <h4>ClienteCS</h4>
+    <h4>Cliente</h4>
     <hr />
     <dl class="dl-horizontal">
         @*<dt>
@@ -113,6 +99,8 @@
         <dd>
             @Html.DisplayFor(model => model.rol)
         </dd>*@
+
+        @Html.ActionLink("agregarCliente","Trabajador")
 
     </dl>
 </div>
