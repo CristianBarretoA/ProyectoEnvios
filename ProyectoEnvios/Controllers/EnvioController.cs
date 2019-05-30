@@ -36,14 +36,14 @@ namespace ProyectoEnvios.Controllers
                 string msg = eAD.registrarEnvio(envioCS);
                 if (!msg.Contains("error"))
                 {
-                    //TempData["Exito"] = msg;
-                    //return RedirectToAction("registrarEnvio");
-                    ViewData["Exito"] = msg;
-                    return View();
+                    TempData["Exito"] = msg;
+                    return RedirectToAction("ConsultaGuia", new { id = msg });
+                    //ViewData["Exito"] = msg;
+                    //return View();
                 }
                 else
                 {
-                    
+
                     if (msg.Contains("Destinatario"))
                     {
                         ViewData["Error"] = "No se encuentra registrado el destinatario";
@@ -54,7 +54,7 @@ namespace ProyectoEnvios.Controllers
                         ViewData["Error"] = "No se encuentra registrado el remitente";
                         return View();
                     }
-                    
+
                 }
             }
             catch (Exception ex)
@@ -89,27 +89,21 @@ namespace ProyectoEnvios.Controllers
             }
         }
 
-        ClienteAD cAD = new ClienteAD();
-
-        //public ActionResult _consultarCliente()
-        //{
-        //    return PartialView();
-        //}
-
-
-        public ActionResult _consultarCliente(int id)
+        public ActionResult consultarEnvios()
         {
             try
             {
-                ClienteCS cS = cAD.consultarClienteID(id);
-                return PartialView(cS);
+                return View(eAD.listarEnvios());
             }
             catch (Exception ex)
             {
-                ModelState.AddModelError("Error al traer informacion del cliente, ", ex.Message);
-                return PartialView();
+                ModelState.AddModelError("Error al consultar envios, ", ex.Message);
+                return View();
             }
+
+
         }
+
 
         public ActionResult _ListarCiudades(int id)
         {

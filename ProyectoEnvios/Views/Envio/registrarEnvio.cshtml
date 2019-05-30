@@ -30,7 +30,8 @@
             <div class="alert alert-danger" role="alert">
                 <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
                 <span class="sr-only">Error:</span>
-                @ViewData["Error"].ToString() <a href="#">Registre al cliente aqui..</a>
+                @ViewData["Error"].ToString()
+                @Html.ActionLink("Registre al cliente aqui..", "agregarCliente", "Trabajador", null, new { target = "_blank" })
             </div>
         }
 
@@ -130,27 +131,6 @@
                 </div>
             </div>
         </div>
-
-
-
-        @*<a href="#" data-toggle="modal" data-target="#clienteModal" onclick="buscarRemitente(event)">Consultar Cliente</a>*@
-
-        @*<div class="modal fade" id="clienteModal" tabindex="-1" role="dialog" aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-body">
-                            @{
-                                int a = 1014240882;
-                            }
-                            @Html.Action("_consultarCliente", new { id = a})
-                        </div>
-                        <div class="modal-footer">
-                            <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                            @Html.ActionLink("Logout", "Logout", "Usuario", new { @class = "btn btn-primary" })
-                        </div>
-                    </div>
-                </div>
-            </div>*@
 
         <hr />
 

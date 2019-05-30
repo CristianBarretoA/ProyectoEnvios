@@ -1,0 +1,83 @@
+﻿@model IEnumerable<ProyectoEnvios.Models.EnvioCS>
+
+@{
+    ViewBag.Title = "Consultar Envios";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Listado de envios</h2>
+<div class="container">
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.idEnvio)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.nombreDestinatario)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.destino)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.direccionDestino)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.fechaRecepcion)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.fechaEntrega)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.estado)
+            </th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            var fechaEntrega = item.fechaEntrega.ToShortDateString();
+            var fechaRecepcion = item.fechaRecepcion.ToShortDateString();
+            var estado = item.estado;
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.idEnvio)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.nombreDestinatario)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.direccionDestino)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.destino)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => fechaRecepcion)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => fechaEntrega)
+                </td>
+                @switch (item.estado)
+                {
+                    case "Entregado":
+                        <td class="text-success">
+                            @Html.DisplayFor(modelItem => item.estado)
+                        </td>
+                        break;
+                    case "Rechazado":
+                        <td>
+                            @Html.DisplayFor(modelItem => item.estado)
+                        </td>
+                        break;
+                    default:
+                        <td class="text-primary">
+                            @Html.DisplayFor(modelItem => item.estado)
+                        </td>
+                        break;
+                }
+
+            </tr>
+        }
+
+    </table>
+</div>
+

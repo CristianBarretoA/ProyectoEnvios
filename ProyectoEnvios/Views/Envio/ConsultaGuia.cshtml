@@ -7,7 +7,7 @@
 
 <h2>Consulta de la Guia #@Html.DisplayFor(model => model.idEnvio)</h2>
 
-@{ 
+@{
     var dateRe = "";
     var hourRe = "";
     var dateEn = "";
@@ -15,13 +15,33 @@
 }
 
 <div class="container">
+
+    @if (TempData["Exito"] != null)
+    {
+        <div class="alert alert-success" role="alert">
+            <span class="glyphicon glyphicon-ok-sign" aria-hidden="true"></span>
+            <span class="sr-only">Exito:</span>
+            Envio registrado, N° de guia: @TempData["Exito"].ToString()
+        </div>
+    }
+
     @if (ViewData["Error"] != null)
     {
-        <div class="alert alert-danger" role="alert">
-            <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
-            <span class="sr-only">Error:</span>
-            @ViewData["Error"].ToString(), @Html.ActionLink("Click para volver atras", "Index", "Home", new { area = "" }, new { @class = "text-danger" })
-        </div>
+        if (Session["userID"] != null)
+        {
+            <div class="alert alert-danger" role="alert">
+                <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                <span class="sr-only">Error:</span>
+                @ViewData["Error"].ToString()
+            </div>
+        }
+        else
+        {<div class="alert alert-danger" role="alert">
+                <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                <span class="sr-only">Error:</span>
+                @ViewData["Error"].ToString(), @Html.ActionLink("Click para volver atras", "Index", "Home", new { area = "" }, new { @class = "text-danger" })
+            </div>
+        }
     }
     else
     {
@@ -48,7 +68,7 @@
     <div class="container-fluid col-md-8 col-md-offset-2">
         <div class="row">
             <h3 style="background-color:lightgray; padding:10px;">REMITENTE/ORIGEN</h3>
-            <hr />            
+            <hr />
             <div class="col-md-5 col-md-offset-1">
                 <p>Ciudad de Origen</p>
                 <p>@Html.DisplayFor(model => model.origen)</p>

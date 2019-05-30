@@ -1,10 +1,10 @@
-﻿using System;
+﻿using ProyectoEnvios.Models;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
-using ProyectoEnvios.Models;
 
 namespace ProyectoEnvios.Datos
 {
@@ -82,6 +82,33 @@ namespace ProyectoEnvios.Datos
                 return eS;
             }
 
+        }
+
+        public List<EnvioCS> listarEnvios()
+        {
+            using (SqlCommand com = new SqlCommand("consultarEnvios", connection()))
+            {
+                com.CommandType = CommandType.StoredProcedure;
+                SqlDataAdapter dataAdapter = new SqlDataAdapter(com);
+                DataSet dataSet = new DataSet();
+                dataAdapter.Fill(dataSet);
+                List<EnvioCS> enviosList = new List<EnvioCS>();
+
+                foreach (DataRow dataRow in dataSet.Tables[0].Rows)
+                {
+                    EnvioCS eS = new EnvioCS();
+                    eS.idEnvio = Convert.ToInt32(dataRow["idEnvio"]);
+                    eS.fechaRecepcion = Convert.ToDateTime(dataRow["fechaRecepcion"]);
+                    eS.fechaEntrega = Convert.ToDateTime(dataRow["fechaEntrega"]);
+                    eS.nombreDestinatario = Convert.ToString(dataRow["destinatario"]);
+                    eS.destino = Convert.ToString(dataRow["ciudadDestino"]);
+                    eS.direccionDestino = Convert.ToString(dataRow["direccionDestino"]);
+                    eS.estado = Convert.ToString(dataRow["estado"]);
+                    enviosList.Add(eS);
+                }
+
+                return enviosList;
+            }
         }
 
         public List<Ciudades> listaCiudades()

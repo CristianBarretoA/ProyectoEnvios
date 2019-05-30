@@ -215,6 +215,7 @@
     <Content Include="Views\Envio\_consultarCliente.cshtml" />
     <Content Include="Views\Envio\_ListarCiudades.cshtml" />
     <Content Include="Views\Envio\_ListarProductos.cshtml" />
+    <Content Include="Views\Envio\consultarEnvios.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

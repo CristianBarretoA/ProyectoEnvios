@@ -23,7 +23,7 @@ namespace ProyectoEnvios.Models
         [Required]
         public string Direcion { get; set; }
 
-        [Display(Name = "Telelfono")]
+        [Display(Name = "Telefono")]
         [Required]
         public int telefono { get; set; }
 
