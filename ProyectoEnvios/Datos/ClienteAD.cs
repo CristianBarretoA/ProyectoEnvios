@@ -24,6 +24,7 @@ namespace ProyectoEnvios.Datos
                     cS.rol = Convert.ToString(reader["nombreRol"]);
                     cS.NombreUsuario = Convert.ToString(reader["nombreUsuario"]);
                     cS.ApellidoUsuario = Convert.ToString(reader["apellidoUsuario"]);
+                    cS.IdentificacionUsuario = Convert.ToInt32(reader["identificacionUsuario"]);
                 }
             }
             return cS;

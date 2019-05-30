@@ -74,7 +74,7 @@
                         case "Mensajero":
                             <div class="navbar-collapse collapse">
                                 <ul class="nav navbar-nav">
-                                    <li>@Html.ActionLink("Inicio", "Index", "Mensajero", new { area = "" }, new { @class = "navbar-brand" })</li>
+                                    <li>@Html.ActionLink("Inicio", "Index", "Mensajero", new { id = user[2] }, new { @class = "navbar-brand" })</li>
                                     <li>@Html.ActionLink("Consultar envios", "consultarEnvios", "Envio")</li>
                                 </ul>
                                 <form class="navbar-form navbar-left" action="@Url.Action("ConsultaGuia","Envio")">

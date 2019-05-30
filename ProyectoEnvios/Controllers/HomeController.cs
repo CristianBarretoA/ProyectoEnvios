@@ -39,7 +39,7 @@ namespace ProyectoEnvios.Controllers
                 c = cAD.login(cS.Usuario, cS.Pass);
                 if (c.rol != null)
                 {
-                    Session["userID"] = c.NombreUsuario + " " + c.ApellidoUsuario + "," + c.rol;
+                    Session["userID"] = c.NombreUsuario + " " + c.ApellidoUsuario + "," + c.rol + "," + c.IdentificacionUsuario;
                     switch (c.rol)
                     {
                         case "Cliente":
@@ -47,7 +47,7 @@ namespace ProyectoEnvios.Controllers
                         case "Trabajador":
                             return RedirectToAction("Index", "Trabajador");
                         case "Mensajero":
-                            return RedirectToAction("Index", "Mensajero");
+                            return RedirectToAction("Index", "Mensajero", new { id = c.IdentificacionUsuario });
                         default:
                             return RedirectToAction("Login", "Home");
                     }

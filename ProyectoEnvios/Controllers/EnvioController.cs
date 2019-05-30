@@ -36,7 +36,7 @@ namespace ProyectoEnvios.Controllers
                 string msg = eAD.registrarEnvio(envioCS);
                 if (!msg.Contains("error"))
                 {
-                    TempData["Exito"] = msg;
+                    TempData["Exito"] = "Envio registrado, N° de guia:" + msg;
                     return RedirectToAction("ConsultaGuia", new { id = msg });
                     //ViewData["Exito"] = msg;
                     //return View();
@@ -89,6 +89,36 @@ namespace ProyectoEnvios.Controllers
             }
         }
 
+        [HttpPost]
+        public ActionResult ConsultaGuia(EnvioCS eS)
+        {
+            int id = eS.idEnvio;
+            if (!ModelState.IsValid)
+            {
+                return View();
+            }
+            try
+            {
+                string msg = eAD.actualizarEstado(eS);
+                if (!msg.Contains("error"))
+                {
+                    TempData["Exito"] = msg;
+                    return RedirectToAction("ConsultaGuia", new { id = eS.idEnvio });
+                }
+                else
+                {
+                    TempData["Error"] = msg;
+                    return RedirectToAction("ConsultaGuia", new { id = eS.idEnvio });
+                }
+
+            }
+            catch (Exception ex)
+            {
+                ModelState.AddModelError("Error al actualizar estado, ", ex.Message);
+                return RedirectToAction("ConsultaGuia", new { id = eS.idEnvio });
+            }
+        }
+
         public ActionResult consultarEnvios()
         {
             try
@@ -101,14 +131,20 @@ namespace ProyectoEnvios.Controllers
                 return View();
             }
 
-
         }
+
+
 
 
         public ActionResult _ListarCiudades(int id)
         {
             ViewData["id"] = id.ToString();
             return PartialView(eAD.listaCiudades());
+        }
+
+        public ActionResult _ListarEstados()
+        {
+            return PartialView(eAD.listaEstado());
         }
 
         public ActionResult _ListarProductos()

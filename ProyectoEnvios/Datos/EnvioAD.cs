@@ -84,6 +84,37 @@ namespace ProyectoEnvios.Datos
 
         }
 
+        public string actualizarEstado(EnvioCS eS)
+        {
+            string msg;
+            try
+            {
+                eS.fechaEntrega = DateTime.Now;
+                using (SqlCommand com = new SqlCommand("actualizarEstado", connection()))
+                {
+                    com.CommandType = CommandType.StoredProcedure;
+                    com.Parameters.AddWithValue("@idEnvio", eS.idEnvio);
+                    com.Parameters.AddWithValue("@fechaEntrega", eS.fechaEntrega);
+                    com.Parameters.AddWithValue("@idEstado", eS.idEstado);
+                    var filas = com.ExecuteNonQuery();
+                    if (filas != 0)
+                    {
+                        msg = "Se ha cambiado el estado exitosamente";
+                    }
+                    else
+                    {
+                        msg = "Hubo un error en la actualizacion, por favor valide sus datos";
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                msg = "Excepcion!! error de tipo: " + ex;
+            }
+            return msg;
+
+        }
+
         public List<EnvioCS> listarEnvios()
         {
             using (SqlCommand com = new SqlCommand("consultarEnvios", connection()))
@@ -101,6 +132,33 @@ namespace ProyectoEnvios.Datos
                     eS.fechaRecepcion = Convert.ToDateTime(dataRow["fechaRecepcion"]);
                     eS.fechaEntrega = Convert.ToDateTime(dataRow["fechaEntrega"]);
                     eS.nombreDestinatario = Convert.ToString(dataRow["destinatario"]);
+                    eS.destino = Convert.ToString(dataRow["ciudadDestino"]);
+                    eS.direccionDestino = Convert.ToString(dataRow["direccionDestino"]);
+                    eS.estado = Convert.ToString(dataRow["estado"]);
+                    enviosList.Add(eS);
+                }
+
+                return enviosList;
+            }
+        }
+
+        public List<EnvioCS> listarEnviosMensajero(int idMensajero)
+        {
+            using (SqlCommand com = new SqlCommand("consultarEnviosMensajero", connection()))
+            {
+                com.CommandType = CommandType.StoredProcedure;
+                com.Parameters.AddWithValue("@idMensajero", idMensajero);
+                SqlDataAdapter dataAdapter = new SqlDataAdapter(com);
+                DataSet dataSet = new DataSet();
+                dataAdapter.Fill(dataSet);
+                List<EnvioCS> enviosList = new List<EnvioCS>();
+
+                foreach (DataRow dataRow in dataSet.Tables[0].Rows)
+                {
+                    EnvioCS eS = new EnvioCS();
+                    eS.idEnvio = Convert.ToInt32(dataRow["idEnvio"]);
+                    eS.fechaRecepcion = Convert.ToDateTime(dataRow["fechaRecepcion"]);
+                    eS.fechaEntrega = Convert.ToDateTime(dataRow["fechaEntrega"]);
                     eS.destino = Convert.ToString(dataRow["ciudadDestino"]);
                     eS.direccionDestino = Convert.ToString(dataRow["direccionDestino"]);
                     eS.estado = Convert.ToString(dataRow["estado"]);
@@ -133,6 +191,31 @@ namespace ProyectoEnvios.Datos
                     ciudadesList.Add(ciudades);
                 }
                 return ciudadesList;
+            }
+        }
+
+        public List<Estado> listaEstado()
+        {
+
+            using (var com = new SqlCommand("SELECT * FROM Estado;", connection()))
+            {
+                com.CommandType = CommandType.Text;
+                SqlDataAdapter dataAdapter = new SqlDataAdapter(com);
+                DataSet dataSet = new DataSet();
+                dataAdapter.Fill(dataSet);
+
+                List<Estado> estadoList = new List<Estado>();
+
+                foreach (DataRow dataRow in dataSet.Tables[0].Rows)
+                {
+                    Estado estado = new Estado();
+
+                    estado.idEstado = Convert.ToInt32(dataRow["idEstado"]);
+                    estado.estado = Convert.ToString(dataRow["estado"]);
+
+                    estadoList.Add(estado);
+                }
+                return estadoList;
             }
         }
 

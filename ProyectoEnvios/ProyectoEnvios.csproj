@@ -208,7 +208,6 @@
     <Content Include="Views\Home\Login.cshtml" />
     <Content Include="Views\Envio\ConsultaGuia.cshtml" />
     <Content Include="Views\Trabajador\Index.cshtml" />
-    <Content Include="Views\Mensajero\Index.cshtml" />
     <Content Include="Views\Usuario\Index.cshtml" />
     <Content Include="Views\Trabajador\ListarRoles.cshtml" />
     <Content Include="Views\Envio\registrarEnvio.cshtml" />
@@ -216,6 +215,8 @@
     <Content Include="Views\Envio\_ListarCiudades.cshtml" />
     <Content Include="Views\Envio\_ListarProductos.cshtml" />
     <Content Include="Views\Envio\consultarEnvios.cshtml" />
+    <Content Include="Views\Mensajero\Index.cshtml" />
+    <Content Include="Views\Envio\_ListarEstados.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

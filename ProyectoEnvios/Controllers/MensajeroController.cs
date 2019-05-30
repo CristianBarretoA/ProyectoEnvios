@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ProyectoEnvios.Datos;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,10 +9,36 @@ namespace ProyectoEnvios.Controllers
 {
     public class MensajeroController : Controller
     {
+
+        EnvioAD eAD = new EnvioAD();
+
         // GET: Mensajero
-        public ActionResult Index()
+        public ActionResult Index(int id)
         {
-            return View();
+            try
+            {
+                return View(eAD.listarEnviosMensajero(id));
+            }
+            catch (Exception ex)
+            {
+                ModelState.AddModelError("Error al consultar envios, ", ex.Message);
+                return View();
+            }
+        }
+
+        public ActionResult consultarEnvios(int id)
+        {
+            try
+            {
+                return View(eAD.listarEnviosMensajero(id));
+            }
+            catch (Exception ex)
+            {
+                ModelState.AddModelError("Error al consultar envios, ", ex.Message);
+                return View();
+            }
+
+
         }
 
         public ActionResult Logout()
