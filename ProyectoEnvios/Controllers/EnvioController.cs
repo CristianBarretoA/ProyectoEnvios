@@ -59,8 +59,9 @@ namespace ProyectoEnvios.Controllers
             }
             catch (Exception ex)
             {
-                
-                ModelState.AddModelError("Error al crear el cliente, ", ex.Message);
+                string msg = "Error al crear al cliente " + ex;
+                ModelState.AddModelError("Error al crear el cliente, ", ex);
+                ViewData["Error"] = msg;
                 return View();
             }
         }
@@ -108,6 +109,17 @@ namespace ProyectoEnvios.Controllers
                 ModelState.AddModelError("Error al traer informacion del cliente, ", ex.Message);
                 return PartialView();
             }
+        }
+
+        public ActionResult _ListarCiudades(int id)
+        {
+            ViewData["id"] = id.ToString();
+            return PartialView(eAD.listaCiudades());
+        }
+
+        public ActionResult _ListarProductos()
+        {
+            return PartialView(eAD.listaProductos());
         }
 
         public ActionResult Logout()

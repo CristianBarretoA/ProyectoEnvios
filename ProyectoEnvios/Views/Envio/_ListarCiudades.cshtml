@@ -1,0 +1,23 @@
+﻿@model IEnumerable<ProyectoEnvios.Models.Ciudades>
+
+
+@if (ViewData["id"].ToString().Equals("1"))
+{
+    <select class="form-control" id="idOrigen" name="idOrigen">
+        @foreach (var item in Model)
+        {
+            <option value="@item.idCiudades">@item.nombreCiudades</option>
+        }
+    </select>
+}
+else
+{
+    <select class="form-control" id="idDestino" name="idDestino">
+        @foreach (var item in Model)
+        {
+            <option value="@item.idCiudades">@item.nombreCiudades</option>
+        }
+    </select>
+}
+
+

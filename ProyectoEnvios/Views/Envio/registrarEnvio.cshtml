@@ -34,102 +34,102 @@
             </div>
         }
 
-            <div class="container-fluid">
+        <div class="container-fluid">
 
-                <div class="row">
-                    <div class="col-md-5 col-md-offset-1">
-                        <div class="form-group">
-                            @Html.LabelFor(model => model.idRemitente, htmlAttributes: new { @class = "control-label col-md-5"})
-                            <br /><br />
-                            <div class="col-md-10">
-                                @Html.EditorFor(model => model.idRemitente, new { htmlAttributes = new { @class = "form-control", @placeholder = "Documento de identidad" } })
-                                @Html.ValidationMessageFor(model => model.idRemitente, "", new { @class = "text-danger" })
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-md-5 col-md-offset-1">
-                        <div class="form-group">
-                            @Html.LabelFor(model => model.idDestinatario, htmlAttributes: new { @class = "control-label col-md-5" })
-                            <br /><br />
-                            <div class="col-md-10">
-                                @Html.EditorFor(model => model.idDestinatario, new { htmlAttributes = new { @class = "form-control", @placeholder = "Documento de identidad" } })
-                                @Html.ValidationMessageFor(model => model.idDestinatario, "", new { @class = "text-danger" })
-                            </div>
+            <div class="row">
+                <div class="col-md-5 col-md-offset-1">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.idRemitente, htmlAttributes: new { @class = "control-label col-md-5" })
+                        <br /><br />
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.idRemitente, new { htmlAttributes = new { @class = "form-control", @placeholder = "Documento de identidad" } })
+                            @Html.ValidationMessageFor(model => model.idRemitente, "", new { @class = "text-danger" })
                         </div>
                     </div>
                 </div>
 
-                <div class="row">
-                    <div class="col-md-5 col-md-offset-1">
-                        <div class="form-group">
-                            @Html.LabelFor(model => model.idOrigen, htmlAttributes: new { @class = "control-label col-md-5" })
-                            <br /><br />
-                            <div class="col-md-10">
-                                @Html.EditorFor(model => model.idOrigen, new { htmlAttributes = new { @class = "form-control" } })
-                                @Html.ValidationMessageFor(model => model.idOrigen, "", new { @class = "text-danger" })
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-md-5 col-md-offset-1">
-                        <div class="form-group">
-                            @Html.LabelFor(model => model.idDestino, htmlAttributes: new { @class = "control-label col-md-5" })
-                            <br /><br />
-                            <div class="col-md-10">
-                                @Html.EditorFor(model => model.idDestino, new { htmlAttributes = new { @class = "form-control" } })
-                                @Html.ValidationMessageFor(model => model.idDestino, "", new { @class = "text-danger" })
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-md-5 col-md-offset-1">
-                        <div class="form-group">
-                            @Html.LabelFor(model => model.idTipoProducto, htmlAttributes: new { @class = "control-label col-md-5" })
-                            <br /><br />
-                            <div class="col-md-10">
-                                @Html.EditorFor(model => model.idTipoProducto, new { htmlAttributes = new { @class = "form-control" } })
-                                @Html.ValidationMessageFor(model => model.idTipoProducto, "", new { @class = "text-danger" })
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-md-5 col-md-offset-1">
-                        <div class="form-group">
-                            @Html.LabelFor(model => model.peso, htmlAttributes: new { @class = "control-label col-md-5" })
-                            <br /><br />
-                            <div class="col-md-10">
-                                @Html.EditorFor(model => model.peso, new { htmlAttributes = new { @class = "form-control" } })
-                                @Html.ValidationMessageFor(model => model.peso, "", new { @class = "text-danger" })
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-md-5 col-md-offset-1">
-                        <div class="form-group">
-                            @Html.LabelFor(model => model.direccionDestino, htmlAttributes: new { @class = "control-label col-md-5" })
-                            <br /><br />
-                            <div class="col-md-10">
-                                @Html.EditorFor(model => model.direccionDestino, new { htmlAttributes = new { @class = "form-control" } })
-                                @Html.ValidationMessageFor(model => model.direccionDestino, "", new { @class = "text-danger" })
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-md-5 col-md-offset-1">
-                        <div class="form-group">
-                            <div class="col-md-offset-2 col-md-10">
-                                <br /><br />
-                                <input type="submit" value="Registrar" class="btn btn-primary" />
-                            </div>
+                <div class="col-md-5 col-md-offset-1">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.idDestinatario, htmlAttributes: new { @class = "control-label col-md-5" })
+                        <br /><br />
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.idDestinatario, new { htmlAttributes = new { @class = "form-control", @placeholder = "Documento de identidad" } })
+                            @Html.ValidationMessageFor(model => model.idDestinatario, "", new { @class = "text-danger" })
                         </div>
                     </div>
                 </div>
             </div>
+
+            <div class="row">
+                <div class="col-md-5 col-md-offset-1">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.origen, htmlAttributes: new { @class = "control-label col-md-5" })
+                        <br /><br />
+                        <div class="col-md-10">
+                            @Html.Action("_ListarCiudades", new { id = 1 })
+                            @Html.ValidationMessageFor(model => model.idOrigen, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-5 col-md-offset-1">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.destino, htmlAttributes: new { @class = "control-label col-md-5" })
+                        <br /><br />
+                        <div class="col-md-10">
+                            @Html.Action("_ListarCiudades", new { id = 0 })
+                            @Html.ValidationMessageFor(model => model.idDestino, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-5 col-md-offset-1">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.tipoProducto, htmlAttributes: new { @class = "control-label col-md-5" })
+                        <br /><br />
+                        <div class="col-md-10">
+                            @Html.Action("_ListarProductos")
+                            @Html.ValidationMessageFor(model => model.idTipoProducto, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-5 col-md-offset-1">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.peso, htmlAttributes: new { @class = "control-label col-md-5" })
+                        <br /><br />
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.peso, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.peso, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-5 col-md-offset-1">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.direccionDestino, htmlAttributes: new { @class = "control-label col-md-5" })
+                        <br /><br />
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.direccionDestino, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.direccionDestino, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-5 col-md-offset-1">
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <br /><br />
+                            <input type="submit" value="Registrar" class="btn btn-primary" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
 
 
@@ -153,7 +153,7 @@
             </div>*@
 
         <hr />
-        
+
     </div>
 }
 

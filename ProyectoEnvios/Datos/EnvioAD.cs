@@ -40,16 +40,13 @@ namespace ProyectoEnvios.Datos
                     }
                     else
                     {
-
                         msg = "Error al registrar el envio";
                     }
                 }
             }
             catch (SqlException ex)
             {
-                SqlError er = ex.Errors[0];
-                
-                msg = "Excepcion!! error de tipo: " + ex.Message;
+                msg = "Excepcion!! error de tipo: " + ex;
             }
             return msg;
         }
@@ -67,6 +64,7 @@ namespace ProyectoEnvios.Datos
                 EnvioCS eS = new EnvioCS();
                 foreach (DataRow dataRow in dataSet.Tables[0].Rows)
                 {
+
                     eS.idEnvio = Convert.ToInt32(dataRow["idEnvio"]);
                     eS.nombreRemitente = Convert.ToString(dataRow["nombreRemitente"]);
                     eS.nombreDestinatario = Convert.ToString(dataRow["nombreDestinatario"]);
@@ -84,6 +82,56 @@ namespace ProyectoEnvios.Datos
                 return eS;
             }
 
+        }
+
+        public List<Ciudades> listaCiudades()
+        {
+
+            using (var com = new SqlCommand("SELECT * FROM Ciudades;", connection()))
+            {
+                com.CommandType = CommandType.Text;
+                SqlDataAdapter dataAdapter = new SqlDataAdapter(com);
+                DataSet dataSet = new DataSet();
+                dataAdapter.Fill(dataSet);
+
+                List<Ciudades> ciudadesList = new List<Ciudades>();
+
+                foreach (DataRow dataRow in dataSet.Tables[0].Rows)
+                {
+                    Ciudades ciudades = new Ciudades();
+
+                    ciudades.idCiudades = Convert.ToInt32(dataRow["idCiudad"]);
+                    ciudades.nombreCiudades = Convert.ToString(dataRow["nombreCiudad"]);
+
+                    ciudadesList.Add(ciudades);
+                }
+                return ciudadesList;
+            }
+        }
+
+        public List<TipoProducto> listaProductos()
+        {
+
+            using (var com = new SqlCommand("SELECT * FROM TipoProducto;", connection()))
+            {
+                com.CommandType = CommandType.Text;
+                SqlDataAdapter dataAdapter = new SqlDataAdapter(com);
+                DataSet dataSet = new DataSet();
+                dataAdapter.Fill(dataSet);
+
+                List<TipoProducto> tipoProductosList = new List<TipoProducto>();
+
+                foreach (DataRow dataRow in dataSet.Tables[0].Rows)
+                {
+                    TipoProducto tipoProducto = new TipoProducto();
+
+                    tipoProducto.idTipoProducto = Convert.ToInt32(dataRow["idTipoProducto"]);
+                    tipoProducto.nombreTipoProducto = Convert.ToString(dataRow["tipoProducto"]);
+
+                    tipoProductosList.Add(tipoProducto);
+                }
+                return tipoProductosList;
+            }
         }
 
 

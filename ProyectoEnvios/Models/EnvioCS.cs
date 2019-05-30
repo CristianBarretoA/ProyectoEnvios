@@ -29,7 +29,6 @@ namespace ProyectoEnvios.Models
         [Display(Name = "Fecha de entrega")]
         public DateTime fechaEntrega { get; set; }
 
-
         public int idOrigen { get; set; }
 
         [Display(Name = "Ciudad origen")]
@@ -67,4 +66,17 @@ namespace ProyectoEnvios.Models
         public string estado { get; set; }
     }
 
+    public partial class Ciudades
+    {
+        public int idCiudades { get; set; }
+
+        public string nombreCiudades { get; set; }
+    }
+
+    public partial class TipoProducto
+    {
+        public int idTipoProducto { get; set; }
+
+        public string nombreTipoProducto { get; set; }
+    }
 }
